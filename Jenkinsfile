@@ -2,19 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('1') {
+        stage('clone') {
             steps {
-                echo 'Hello World'
+                git branch: 'main', credentialsId: '7c273dc1-6cdc-4ffb-8f9e-770d5108ded1', url: 'https://github.com/Siddhi1845/HelloWorld.git'
             }
         }
-        stage('2') {
+        stage('compile') {
             steps {
-                echo 'Good morning'
+                bat 'javac hello.java'
             }
         }
-        stage('3') {
+        stage('Run') {
             steps {
-                echo 'Good night'
+                bat 'java hello'
             }
         }
     }
